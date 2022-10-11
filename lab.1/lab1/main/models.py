@@ -10,6 +10,9 @@ class Coffee(models.Model):
         managed = False
         db_table = 'coffee'
 
+    def __str__(self):
+        return self.name
+
 
 class CoffeeOrder(models.Model):
     order = models.ForeignKey('Order', models.DO_NOTHING)
@@ -29,6 +32,9 @@ class Customer(models.Model):
         managed = False
         db_table = 'customer'
 
+    def __str__(self):
+        return self.name
+
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, models.DO_NOTHING)
@@ -37,3 +43,6 @@ class Order(models.Model):
     class Meta:
         managed = False
         db_table = 'order'
+    
+    def __str__(self):
+        return self.customer.name

@@ -6,4 +6,5 @@ export enum COLORS {
     TextColor2 = "#E6E1E5",
     ErrorRed = "#ba00009e",
     TextGrey = "#ffffff99",
+    Grey = "#ffffff99",
 }

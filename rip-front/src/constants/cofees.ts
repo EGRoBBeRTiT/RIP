@@ -1,4 +1,4 @@
-import { Coffee } from "components/CoffeeCard/CoffeeCard.types";
+import { Coffee } from "types/coffee";
 
 export const COFFEES: Coffee[] = [
     { id: 1, title: "Капучино", price: 200 },

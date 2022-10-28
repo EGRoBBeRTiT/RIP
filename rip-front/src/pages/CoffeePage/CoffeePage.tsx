@@ -1,11 +1,9 @@
 import { COFFEES } from "constants/cofees";
-import { ButtonStyled, CoffeePageStyled } from "pages/CoffeePage/CoffeePage.style";
+import { AiOutlineCoffeeStyled, ButtonStyled, CoffeePageStyled } from "pages/CoffeePage/CoffeePage.style";
 import React from "react";
 import { useParams } from "react-router";
 
-import { CoffeePageProps } from "./CoffeePage.types";
-
-export const CoffeePage: React.FC<CoffeePageProps> = () => {
+export const CoffeePage: React.FC = () => {
     const params = useParams<{ id: string }>();
 
     return (
@@ -19,6 +17,7 @@ export const CoffeePage: React.FC<CoffeePageProps> = () => {
             >
                 Купить
             </ButtonStyled>
+            <AiOutlineCoffeeStyled size={1000} strokeWidth={0.05} color={"#6565653d"} />
         </CoffeePageStyled>
     );
 };

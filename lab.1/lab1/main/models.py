@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Coffee(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     volume = models.IntegerField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)

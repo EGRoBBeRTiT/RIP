@@ -1,14 +1,11 @@
-import { getCoffeeList } from "api/coffees";
 import { CoffeeCard } from "components/CoffeeCard";
-import { BACKEND_URL } from "config";
-import { COFFEES } from "constants/cofees";
 import { BannerStyled, CoffeesStyled, ContentStyled, MainPageStyled, TableStyled } from "pages/HomePage/HomePage.style";
 import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "store";
 import { getCoffeeListAction } from "store/coffees/coffees.action";
 
-export const HomePage: React.FC = () => {
+export const HomePage = () => {
     const dispatch = useAppDispatch();
     const { coffees } = useAppSelector((store) => store.coffee);
 
@@ -22,7 +19,6 @@ export const HomePage: React.FC = () => {
 
     useEffect(() => {
         if (coffees?.length === 0) {
-            getCoffeeList();
             dispatch(getCoffeeListAction());
         }
     }, [coffees, dispatch]);
@@ -34,9 +30,9 @@ export const HomePage: React.FC = () => {
                 <h3>Выберете понравившийся кофе</h3>
                 <TableStyled>
                     <CoffeesStyled>
-                        {COFFEES.map((coffee) => (
+                        {coffees?.map((coffee) => (
                             <CoffeeCard
-                                key={coffee.id}
+                                key={coffee.name}
                                 coffee={coffee}
                                 onClick={() => handleCardClick(coffee?.id ?? 0)}
                             />

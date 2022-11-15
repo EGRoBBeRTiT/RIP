@@ -1,15 +1,33 @@
-import { COFFEES } from "constants/cofees";
 import { AiOutlineCoffeeStyled, ButtonStyled, CoffeePageStyled } from "pages/CoffeePage/CoffeePage.style";
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
+import { useAppDispatch, useAppSelector } from "store";
+import { getCoffeeByIdAction } from "store/coffees/coffees.action";
+import { resetCoffeeState } from "store/coffees/coffees.reducer";
 
 export const CoffeePage: React.FC = () => {
     const params = useParams<{ id: string }>();
 
+    const dispatch = useAppDispatch();
+    const { coffee } = useAppSelector((store) => store.coffee);
+
+    useEffect(() => {
+        if (!coffee) {
+            dispatch(getCoffeeByIdAction(params.id ?? ""));
+        }
+    }, [coffee, dispatch, params.id]);
+
+    useEffect(
+        () => () => {
+            dispatch(resetCoffeeState());
+        },
+        [dispatch]
+    );
+
     return (
         <CoffeePageStyled>
-            <h1>{COFFEES.find((coffee) => coffee.id === Number(params.id))?.title}</h1>
-            <h2>${COFFEES.find((coffee) => coffee.id === Number(params.id))?.price}</h2>
+            <h1>{coffee?.name}</h1>
+            <h2>${coffee?.price}</h2>
             <ButtonStyled
                 onClick={() => {
                     alert("Куплено!");

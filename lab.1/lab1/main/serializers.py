@@ -7,7 +7,7 @@ class CoffeeSerializer(serializers.ModelSerializer):
         # Модель, которую мы сериализуем
         model = Coffee
         # Поля, которые мы сериализуем
-        fields = ["name", "volume", "price"]
+        fields = ["id", "name", "volume", "price"]
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:

@@ -14,7 +14,7 @@ export interface CoffeeState {
 }
 
 const initialState: CoffeeState = {
-    coffee: { id: 0, title: "", price: 0 },
+    coffee: undefined,
     coffees: [],
     error: undefined,
 };

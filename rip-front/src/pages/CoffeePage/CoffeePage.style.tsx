@@ -32,10 +32,12 @@ export const ButtonStyled = styled.button`
     cursor: pointer;
     color: ${COLORS.TextGrey};
     font-size: large;
+    z-index: 2;
 `;
 
 export const AiOutlineCoffeeStyled = styled(AiOutlineCoffee)`
     position: absolute;
     left: -150px;
     top: 100px;
+    z-index: 1;
 `;

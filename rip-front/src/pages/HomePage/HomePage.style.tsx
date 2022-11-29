@@ -5,9 +5,9 @@ export const MainPageStyled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: ${COLORS.BackgroundDark};
+    width: 100%;
+    height: fit-content;
+    min-height: 100%;
 `;
 
 export const ContentStyled = styled.div`

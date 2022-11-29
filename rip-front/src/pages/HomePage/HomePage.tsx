@@ -1,4 +1,7 @@
 import { CoffeeCard } from "components/CoffeeCard";
+import { FiltersBlock } from "components/FiltersBlock";
+import { Input } from "components/Input";
+import { MainLayout } from "layouts/MainLayout";
 import { BannerStyled, CoffeesStyled, ContentStyled, MainPageStyled, TableStyled } from "pages/HomePage/HomePage.style";
 import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -24,23 +27,48 @@ export const HomePage = () => {
     }, [coffees, dispatch]);
 
     return (
-        <MainPageStyled>
-            <ContentStyled>
-                <h1>Кофейня</h1>
-                <h3>Выберете понравившийся кофе</h3>
-                <TableStyled>
-                    <CoffeesStyled>
-                        {coffees?.map((coffee) => (
-                            <CoffeeCard
-                                key={coffee.name}
-                                coffee={coffee}
-                                onClick={() => handleCardClick(coffee?.id ?? 0)}
-                            />
-                        ))}
-                    </CoffeesStyled>
-                    <BannerStyled>Место для вашей рекламы</BannerStyled>
-                </TableStyled>
-            </ContentStyled>
-        </MainPageStyled>
+        <MainLayout>
+            <MainPageStyled>
+                <ContentStyled>
+                    <h1>Кофейня</h1>
+                    <h3>Выберете понравившийся кофе</h3>
+
+                    <TableStyled>
+                        <CoffeesStyled>
+                            <FiltersBlock />
+                            {coffees?.map((coffee) => (
+                                <CoffeeCard
+                                    key={coffee.name}
+                                    coffee={coffee}
+                                    onClick={() => handleCardClick(coffee?.id ?? 0)}
+                                />
+                            ))}
+                            {coffees?.map((coffee) => (
+                                <CoffeeCard
+                                    key={coffee.name}
+                                    coffee={coffee}
+                                    onClick={() => handleCardClick(coffee?.id ?? 0)}
+                                />
+                            ))}
+                            {coffees?.map((coffee) => (
+                                <CoffeeCard
+                                    key={coffee.name}
+                                    coffee={coffee}
+                                    onClick={() => handleCardClick(coffee?.id ?? 0)}
+                                />
+                            ))}
+                            {coffees?.map((coffee) => (
+                                <CoffeeCard
+                                    key={coffee.name}
+                                    coffee={coffee}
+                                    onClick={() => handleCardClick(coffee?.id ?? 0)}
+                                />
+                            ))}
+                        </CoffeesStyled>
+                        <BannerStyled>Место для вашей рекламы</BannerStyled>
+                    </TableStyled>
+                </ContentStyled>
+            </MainPageStyled>
+        </MainLayout>
     );
 };

@@ -1,11 +1,13 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { coffeeReducer } from "store/coffees/coffees.reducer";
+import { authReducer } from "store/auth/auth.reducer";
 
 export const makeStore = () =>
     configureStore({
         reducer: {
             coffee: coffeeReducer,
+            auth: authReducer,
         },
     });
 

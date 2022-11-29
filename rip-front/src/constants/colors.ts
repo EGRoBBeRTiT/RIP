@@ -1,4 +1,5 @@
 export enum COLORS {
+    BackgroundDarkPale = "#1f1f1f9a",
     BackgroundDark = "#1F1F1F",
     TextColor = "#D0BCFF",
     BorderColor = "#4A4458",

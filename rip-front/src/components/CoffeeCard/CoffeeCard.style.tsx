@@ -5,6 +5,7 @@ export const CoffeeCardStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 24px;
     border-radius: 16px;
     border: 1px solid ${COLORS.BorderColor};
     cursor: pointer;
@@ -32,4 +33,11 @@ export const CoffeeCardStyled = styled.div`
             0px 9.06347px 5.29306px rgba(74, 102, 201, 0.0104523),
             0px 3.98907px 2.32961px rgba(74, 102, 201, 0.00719002);
     }
+`;
+
+export const MainInfoStyled = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 `;

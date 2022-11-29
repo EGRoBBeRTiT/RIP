@@ -1,3 +1,4 @@
+import { MainLayout } from "layouts/MainLayout";
 import { AiOutlineCoffeeStyled, ButtonStyled, CoffeePageStyled } from "pages/CoffeePage/CoffeePage.style";
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
@@ -25,17 +26,19 @@ export const CoffeePage: React.FC = () => {
     );
 
     return (
-        <CoffeePageStyled>
-            <h1>{coffee?.name}</h1>
-            <h2>${coffee?.price}</h2>
-            <ButtonStyled
-                onClick={() => {
-                    alert("Куплено!");
-                }}
-            >
-                Купить
-            </ButtonStyled>
-            <AiOutlineCoffeeStyled size={1000} strokeWidth={0.05} color={"#6565653d"} />
-        </CoffeePageStyled>
+        <MainLayout>
+            <CoffeePageStyled>
+                <h1>{coffee?.name}</h1>
+                <h2>${coffee?.price}</h2>
+                <ButtonStyled
+                    onClick={() => {
+                        alert("Куплено!");
+                    }}
+                >
+                    Купить
+                </ButtonStyled>
+                <AiOutlineCoffeeStyled size={1000} strokeWidth={0.05} color={"#6565653d"} />
+            </CoffeePageStyled>
+        </MainLayout>
     );
 };

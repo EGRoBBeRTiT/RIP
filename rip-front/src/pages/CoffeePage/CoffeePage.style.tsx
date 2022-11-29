@@ -8,11 +8,12 @@ export const CoffeePageStyled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: ${COLORS.BackgroundDark};
+    width: 100%;
+    height: fit-content;
+    overflow-x: visible;
+    overflow-y: visible;
+    min-height: 100%;
     color: ${COLORS.TextGrey};
-    overflow: hidden;
 
     h1 {
         margin-top: 40px;

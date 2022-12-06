@@ -1,7 +1,7 @@
 import { COLORS } from "constants/colors";
 import styled from "styled-components";
 
-export const CoffeeCardStyled = styled.div`
+export const ProductCardStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,6 +10,7 @@ export const CoffeeCardStyled = styled.div`
     border: 1px solid ${COLORS.BorderColor};
     cursor: pointer;
     width: 100%;
+    height: 80px;
     color: ${COLORS.TextGrey};
     padding: 16px;
     transition: all 0.2s;
@@ -38,6 +39,31 @@ export const CoffeeCardStyled = styled.div`
 export const MainInfoStyled = styled.div`
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
+
+    p {
+        margin-left: auto;
+    }
+
+    span {
+        font-weight: 300;
+        margin-left: auto;
+        color: ${COLORS.TextGrey};
+    }
+`;
+
+export const TextStyled = styled.div`
+    white-space: nowrap;
+    color: ${COLORS.TextGrey};
+    font-weight: 300;
+`;
+
+export const DeleteIconStyled = styled.span`
+    color: ${COLORS.TextGrey};
+    transition: all 200ms;
+
+    &:hover {
+        color: ${COLORS.ErrorRed};
+    }
 `;

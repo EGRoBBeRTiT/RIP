@@ -14,6 +14,8 @@
         "final-form": "^4.20.7",
         "install": "^0.13.0",
         "npm": "^8.19.2",
+        "prettier": "^2.8.0",
+        "qs": "^6.11.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-final-form": "^6.5.9",
@@ -23,6 +25,7 @@
         "react-router-dom": "^6.4.2",
         "react-scripts": "5.0.1",
         "styled-components": "^5.3.6",
+        "swagger-typescript": "^6.4.0",
         "typescript": "^4.8.4",
         "uuidv4": "^6.2.13",
         "web-vitals": "^2.1.4"
@@ -31,7 +34,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "generate-api": "swag-ts"
     },
     "eslintConfig": {
         "extends": [

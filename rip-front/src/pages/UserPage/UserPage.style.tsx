@@ -6,4 +6,6 @@ export const UserPageStyled = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding-top: 60px;
+    gap: 20px;
 `;

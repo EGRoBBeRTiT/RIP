@@ -67,7 +67,7 @@ export const ContainerStyled = styled.div`
     }
 `;
 
-export const SiBuymeacoffeeStyled = styled(SiCoffeescript)`
+export const SiCoffeescriptStyled = styled(SiCoffeescript)`
     cursor: pointer;
 `;
 
@@ -77,4 +77,25 @@ export const FaUserCircleStyled = styled(FaUserCircle)`
 
 export const BsCartStyled = styled(BsCart)`
     cursor: pointer;
+`;
+
+export const CartStyled = styled.div`
+    position: relative;
+    cursor: pointer;
+`;
+
+export const LengthStyled = styled.div`
+    position: absolute;
+    top: -10px;
+    left: calc(100% - 10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: fit-content;
+    padding: 4px;
+    background: ${COLORS.Yellow};
+    color: ${COLORS.Black};
+    opacity: 1;
+    border-radius: 10px;
 `;

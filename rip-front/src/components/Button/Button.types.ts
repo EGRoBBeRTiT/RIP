@@ -7,5 +7,5 @@ export type ButtonProps = Omit<
     children: ReactNode;
     filled?: boolean;
     rounded?: boolean;
-    styleType?: "primary" | "secondary" | "outlined";
+    styleType?: "primary" | "secondary" | "outlined" | "link" | "danger";
 };

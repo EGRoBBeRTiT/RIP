@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { AiOutlineCoffee } from "@react-icons/all-files/ai/AiOutlineCoffee";
 
-export const CoffeePageStyled = styled.div`
+export const ProductPageStyled = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -20,6 +20,10 @@ export const CoffeePageStyled = styled.div`
         font-size: 50px;
     }
     h2 {
+        margin-top: 20px;
+    }
+
+    & > button {
         margin-top: 20px;
     }
 `;
@@ -41,4 +45,33 @@ export const AiOutlineCoffeeStyled = styled(AiOutlineCoffee)`
     left: -150px;
     top: 100px;
     z-index: 1;
+`;
+
+export const DescriptionStyled = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 12px 0;
+
+    span {
+        display: flex;
+        width: 100%;
+        font-weight: 300;
+        font-size: 16px;
+        color: ${COLORS.TextGrey};
+
+        span {
+            width: fit-content;
+            margin-left: 20px;
+            font-size: 20px;
+            color: ${COLORS.TextColor};
+        }
+    }
+`;
+
+export const TextStyled = styled.div`
+    white-space: nowrap;
+    color: ${COLORS.TextGrey};
+    font-weight: 300;
+    margin-top: 20px;
 `;

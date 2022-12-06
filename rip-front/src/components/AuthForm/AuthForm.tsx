@@ -1,23 +1,23 @@
 import React, { useCallback } from "react";
 import { AuthContainerStyled } from "./AuthForm.style";
 
-import { AuthFormValues } from "./AuthForm.types";
+import { AuthFormProps, AuthFormValues } from "./AuthForm.types";
 
 import { Form } from "react-final-form";
 import { validateAuthForm } from "./AuthForm.utils";
-import { useDispatch } from "react-redux";
-import { pushFields } from "store/auth";
 import { COLORS } from "constants/colors";
 import { InputField } from "components/Fields/InputField";
 import { AiOutlineUser } from "@react-icons/all-files/ai/AiOutlineUser";
 import { Button } from "components/Button";
+import { loginAction } from "store/auth/auth.actions";
+import { useAppDispatch } from "store";
 
-export const AuthForm = () => {
-    const dispatch = useDispatch();
+export const AuthForm = ({ onRegisterButtonClick }: AuthFormProps) => {
+    const dispatch = useAppDispatch();
 
     const handleFormSubmit = useCallback(
         (values: AuthFormValues) => {
-            dispatch(pushFields(values));
+            dispatch(loginAction(values)).catch((error) => alert(error));
         },
         [dispatch]
     );
@@ -30,8 +30,11 @@ export const AuthForm = () => {
                     <>
                         <InputField name="email" type="email" placeholder="e-mail" />
                         <InputField name="password" type="password" placeholder="password" />
-                        <Button data-testid="submit" type="submit" onClick={handleSubmit as VoidFunction} filled>
+                        <Button type="submit" onClick={handleSubmit as VoidFunction} filled>
                             Войти
+                        </Button>
+                        <Button styleType="link" onClick={onRegisterButtonClick}>
+                            Зарегистрироваться
                         </Button>
                     </>
                 )}

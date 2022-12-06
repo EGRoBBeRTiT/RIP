@@ -8,4 +8,6 @@ export enum COLORS {
     ErrorRed = "#ba00009e",
     TextGrey = "#ffffff99",
     Grey = "#ffffff99",
+    White = "#ffffff",
+    Yellow = "#ffff00",
 }

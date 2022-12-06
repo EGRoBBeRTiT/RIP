@@ -7,11 +7,15 @@ import { Button } from "components/Button";
 import { useAppDispatch, useAppSelector } from "store";
 import { clearAuthState } from "store/auth";
 import { useNavigate } from "react-router";
+import { RegistrationForm } from "components/RegistrationForm";
+import { User } from "generated/types";
+import { RegistrationFormValues } from "components/RegistrationForm/RegistrationForm.types";
 
 export const UserPage = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const isAuth = useAppSelector((store) => store.auth.isAuth);
+    const user = useAppSelector((store) => store.auth.user);
 
     const handleLogoutClick = useCallback(() => {
         dispatch(clearAuthState());
@@ -26,7 +30,16 @@ export const UserPage = () => {
     return (
         <MainLayout>
             <UserPageStyled>
-                <AiOutlineUser size={240} color={COLORS.TextColor2} strokeWidth={1} />
+                <RegistrationForm
+                    initialValues={
+                        {
+                            ...user,
+                            isAdmin: (user as User)?.is_superuser,
+                            isStaff: (user as User)?.is_staff,
+                        } as RegistrationFormValues
+                    }
+                    isForEdit
+                />
                 <Button styleType="outlined" onClick={handleLogoutClick}>
                     Выйти
                 </Button>

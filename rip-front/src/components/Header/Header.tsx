@@ -3,7 +3,9 @@ import {
     BsCartStyled,
     ContainerStyled,
     HeaderStyled,
-    SiBuymeacoffeeStyled,
+    SiCoffeescriptStyled,
+    CartStyled,
+    LengthStyled,
 } from "components/Header/Header.style";
 import React, { useCallback } from "react";
 
@@ -18,6 +20,7 @@ export const Header = (props: HeaderProps) => {
     const location = useLocation();
     const navigate = useNavigate();
     const isAuth = useAppSelector((store) => store.auth.isAuth);
+    const cartLength = useAppSelector((store) => store.cart.cart?.products.length);
 
     const handleButtonClick = useCallback(() => {
         navigate("/auth");
@@ -35,13 +38,17 @@ export const Header = (props: HeaderProps) => {
         <HeaderStyled {...props}>
             <ContainerStyled>
                 <Link to="/">
-                    <SiBuymeacoffeeStyled color={COLORS.TextColor2} size={40} />
+                    <SiCoffeescriptStyled color={COLORS.TextColor2} size={40} />
                     <h3>Titov's coffs</h3>
                 </Link>
                 <h2>{getPageTitle(location.pathname)}</h2>
                 {isAuth ? (
                     <div>
-                        <BsCartStyled color={COLORS.TextGrey} size={24} title="Корзина" onClick={handleCartClick} />
+                        <CartStyled onClick={handleCartClick}>
+                            {!!cartLength && <LengthStyled>{cartLength}</LengthStyled>}
+
+                            <BsCartStyled color={COLORS.TextGrey} size={24} title="Корзина" />
+                        </CartStyled>
                         <FaUserCircleStyled
                             color={COLORS.BorderColor}
                             size={30}

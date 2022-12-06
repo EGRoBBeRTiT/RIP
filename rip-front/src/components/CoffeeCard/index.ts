@@ -1,1 +1,0 @@
-export { CoffeeCard } from './CoffeeCard';

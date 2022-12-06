@@ -51,4 +51,10 @@ export const FiltersTooltipStyled = styled.div<{ isShow: boolean }>`
         color: ${COLORS.TextColor};
         margin-bottom: 8px;
     }
+
+    h4 {
+        font-weight: 100;
+        color: ${COLORS.TextColor};
+        margin-bottom: 8px;
+    }
 `;

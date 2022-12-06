@@ -1,0 +1,6 @@
+{
+    "url": "http://127.0.0.1:8000/schema/",
+    "dir": "src/generated",
+    "prefix": "/api",
+    "language": "typescript"
+}

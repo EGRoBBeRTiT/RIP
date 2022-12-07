@@ -9,7 +9,7 @@ import { changeCartAction } from "store/cart/cart.actions";
 import { getProductByIdAction } from "store/products/products.actions";
 import { resetProductState } from "store/products/products.reducer";
 
-export const ProductPage: React.FC = () => {
+export const ProductPage = () => {
     const params = useParams<{ id: string }>();
     const products = useAppSelector((store) => store.cart.cart?.products);
 
@@ -65,7 +65,7 @@ export const ProductPage: React.FC = () => {
                 )}
                 {isInCart ? <TextStyled>В корзине</TextStyled> : <Button onClick={handleCartClick}>В корзину</Button>}
 
-                {canEdit && <ProductCreateForm isForEdit initialValues={coffee} />}
+                {canEdit && <ProductCreateForm isForEdit initialValues={coffee} productId={Number(params.id)} />}
             </ProductPageStyled>
         </MainLayout>
     );

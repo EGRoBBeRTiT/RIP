@@ -12,5 +12,6 @@ export type ProductCreateFormErrors = Record<keyof ProductCreateFormValues, stri
 
 export type ProductCreateFormProps = {
     isForEdit?: boolean;
+    productId?: number;
     initialValues?: Product;
 };

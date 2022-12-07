@@ -19,15 +19,6 @@ const baseConfig: AxiosRequestConfig = {
     headers: {
         Accept: "application/json",
         "Content-Type": "application/json-patch+json",
-        // Allow: "GET, PUT, PATCH, DELETE, HEAD, OPTIONS",
-        // "Access-Control-Allow-Credentials": "true",
-        // "Referrer-Policy": "same-origin",
-        // "Cross-Origin-Opener-Policy": "same-origin",
-        // "X-Content-Type-Options": "nosniff",
-        // "X-Frame-Options": "DENY",
-        // Vary: "Accept, Origin",
-        // "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS",
     },
 };
 

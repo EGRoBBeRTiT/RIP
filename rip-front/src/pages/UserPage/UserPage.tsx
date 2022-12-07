@@ -1,8 +1,6 @@
 import { MainLayout } from "layouts/MainLayout";
 import { UserPageStyled } from "pages/UserPage/UserPage.style";
 import React, { useCallback, useEffect } from "react";
-import { AiOutlineUser } from "@react-icons/all-files/ai/AiOutlineUser";
-import { COLORS } from "constants/colors";
 import { Button } from "components/Button";
 import { useAppDispatch, useAppSelector } from "store";
 import { clearAuthState } from "store/auth";

@@ -7,7 +7,8 @@ export const MainPageStyled = styled.div`
     align-items: center;
     width: 100%;
     height: fit-content;
-    min-height: 100%;
+    padding-bottom: 100px;
+    overflow: visible;
 `;
 
 export const ContentStyled = styled.div`
@@ -40,6 +41,7 @@ export const TableStyled = styled.div`
     gap: 40px;
     width: 100%;
     margin-top: 60px;
+    overflow: visible;
 `;
 
 export const BannerStyled = styled.div`

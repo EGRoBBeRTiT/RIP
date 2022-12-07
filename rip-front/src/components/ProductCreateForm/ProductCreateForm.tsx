@@ -8,16 +8,20 @@ import { validateAuthForm } from "./ProductCreateForm.utils";
 import { InputField } from "components/Fields/InputField";
 import { Button } from "components/Button";
 import { useAppDispatch } from "store";
-import { createProductAction } from "store/products/products.actions";
+import { changeProductAction, createProductAction } from "store/products/products.actions";
 
-export const ProductCreateForm = ({ isForEdit = false, initialValues }: ProductCreateFormProps) => {
+export const ProductCreateForm = ({ isForEdit = false, productId, initialValues }: ProductCreateFormProps) => {
     const dispatch = useAppDispatch();
 
     const handleFormSubmit = useCallback(
         (values: ProductCreateFormValues) => {
-            dispatch(createProductAction(values));
+            if (isForEdit) {
+                dispatch(changeProductAction({ id: productId, ...values }));
+            } else {
+                dispatch(createProductAction(values));
+            }
         },
-        [dispatch]
+        [dispatch, isForEdit, productId]
     );
 
     return (

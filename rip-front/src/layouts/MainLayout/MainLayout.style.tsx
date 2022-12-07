@@ -9,7 +9,6 @@ export const MainLayoutStyled = styled.div<{ bgColor: COLORS }>`
     height: fit-content;
     min-height: 100vh;
     background-color: ${({ bgColor }) => bgColor};
-    /* overflow-y: hidden; */
 `;
 
 export const ContainerStyled = styled.div`
@@ -18,5 +17,5 @@ export const ContainerStyled = styled.div`
     padding: 0 20px;
     align-self: center;
     height: inherit;
-    overflow-y: hidden;
+    overflow-y: visible;
 `;

@@ -20,7 +20,7 @@ export const RegistrationForm = ({ onLoginClick, initialValues, isForEdit }: Reg
     const handleFormSubmit = useCallback(
         (values: RegistrationFormValues) => {
             if (isForEdit) {
-                dispatch(editUserAction(values));
+                dispatch(editUserAction(normalizeData(values)));
             } else {
                 dispatch(registrationAction(normalizeData(values)));
             }

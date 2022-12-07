@@ -22,7 +22,7 @@ export const RegistrationForm = ({ onLoginClick, initialValues, isForEdit }: Reg
             if (isForEdit) {
                 dispatch(editUserAction(values));
             } else {
-                dispatch(registrationAction(normalizeData(values))).catch((error) => console.log(error));
+                dispatch(registrationAction(normalizeData(values)));
             }
         },
         [dispatch, isForEdit]

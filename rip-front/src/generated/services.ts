@@ -199,7 +199,6 @@ export const getProducts = (
     queryParams?: string,
     configOverride?: AxiosRequestConfig
 ): Promise<SwaggerResponse<Product[]>> => {
-    console.log("queryParams", queryParams);
     return Http.getRequest(
         `${getProducts.key}${queryParams}`,
         "",

@@ -17,7 +17,6 @@ axios.defaults.xsrfCookieName = "csrftoken";
 const baseConfig: AxiosRequestConfig = {
     baseURL: BACKEND_URL, // <--- Add your base url
     headers: {
-        Accept: "application/json",
         "Content-Type": "application/json-patch+json",
     },
 };

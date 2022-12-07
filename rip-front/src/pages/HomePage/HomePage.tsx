@@ -19,7 +19,7 @@ import { ProductCreateForm } from "components/ProductCreateForm";
 
 export const HomePage = () => {
     const dispatch = useAppDispatch();
-    const { coffeesSearch, status } = useAppSelector((store) => store.coffee);
+    const { coffees: coffeesSearch, status } = useAppSelector((store) => store.coffee);
     const canCreate = useAppSelector((store) => store.auth.isAdmin || store.auth.isStaff);
 
     const navigate = useNavigate();
@@ -51,7 +51,7 @@ export const HomePage = () => {
                                 <>
                                     {coffeesSearch?.map((coffee) => (
                                         <ProductCard
-                                            key={coffee.name}
+                                            key={coffee.id}
                                             coffee={coffee}
                                             onClick={() => handleCardClick(coffee?.id ?? 0)}
                                         />

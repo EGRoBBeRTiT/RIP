@@ -6,20 +6,21 @@ import {
     deleteProductAction,
     getProductByIdAction,
     getProductListAction,
+    getSearchProductListAction,
 } from "./products.actions";
 
 export interface ProductState extends AsyncState {
     coffee?: Product;
     coffees?: Product[];
-    coffeesSearch?: Product[];
+    availableBrands?: (string | undefined)[];
     error: unknown;
 }
 
 const initialState: ProductState = {
     coffee: undefined,
     coffees: [],
-    coffeesSearch: [],
     status: FetchStatus.IDLE,
+    availableBrands: [],
     error: undefined,
 };
 
@@ -27,10 +28,6 @@ const coffeeSlice = createSlice<ProductState, SliceCaseReducers<ProductState>>({
     name: "coffee",
     initialState,
     reducers: {
-        filterProducts: (state, { payload }: PayloadAction<Product[]>) => {
-            state.coffeesSearch = payload;
-        },
-
         reset: () => initialState,
     },
     extraReducers: (builder) => {
@@ -42,7 +39,6 @@ const coffeeSlice = createSlice<ProductState, SliceCaseReducers<ProductState>>({
             state.status = FetchStatus.FULFILLED;
             state.coffee = payload;
             state.coffees = [...(state?.coffees ?? []), payload];
-            state.coffeesSearch = [...(state?.coffees ?? []), payload];
         });
         builder.addCase(createProductAction.rejected, (state, { error }) => {
             state.status = FetchStatus.REJECTED;
@@ -55,10 +51,27 @@ const coffeeSlice = createSlice<ProductState, SliceCaseReducers<ProductState>>({
         });
         builder.addCase(getProductListAction.fulfilled, (state, { payload }) => {
             state.status = FetchStatus.FULFILLED;
+            const availableBrands: (string | undefined)[] = [];
+            payload?.forEach(
+                (product) => !availableBrands.includes(product.brand) && availableBrands.push(product.brand)
+            );
+            state.availableBrands = availableBrands;
             state.coffees = payload;
-            state.coffeesSearch = payload;
         });
         builder.addCase(getProductListAction.rejected, (state, { error }) => {
+            state.status = FetchStatus.REJECTED;
+            state.error = error;
+        });
+
+        builder.addCase(getSearchProductListAction.pending, (state) => {
+            state.status = FetchStatus.PENDING;
+            state.error = null;
+        });
+        builder.addCase(getSearchProductListAction.fulfilled, (state, { payload }) => {
+            state.status = FetchStatus.FULFILLED;
+            state.coffees = payload;
+        });
+        builder.addCase(getSearchProductListAction.rejected, (state, { error }) => {
             state.status = FetchStatus.REJECTED;
             state.error = error;
         });

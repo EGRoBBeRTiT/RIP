@@ -6,9 +6,16 @@ export const createProductAction = createAsyncThunk("products/createProduct", as
     return await postProducts(product);
 });
 
-export const getProductListAction = createAsyncThunk("products/getProductList", async (queryParams?: string) => {
-    return await getProducts(queryParams ?? "");
+export const getProductListAction = createAsyncThunk("products/getProductList", async () => {
+    return await getProducts("");
 });
+
+export const getSearchProductListAction = createAsyncThunk(
+    "products/getSearchProductList",
+    async (queryParams?: string) => {
+        return await getProducts(queryParams ?? "");
+    }
+);
 
 export const deleteProductAction = createAsyncThunk("products/deleteProduct", async (id: number) => {
     return await deleteProductsId(id);

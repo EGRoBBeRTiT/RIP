@@ -4,17 +4,17 @@ import React, { useCallback, useEffect } from "react";
 import { Button } from "components/Button";
 import { useAppDispatch, useAppSelector } from "store";
 import { clearAuthState } from "store/auth";
-import { useNavigate } from "react-router";
 import { RegistrationForm } from "components/RegistrationForm";
 import { User } from "generated/types";
 import { RegistrationFormValues } from "components/RegistrationForm/RegistrationForm.types";
 import { resetProductState } from "store/products/products.reducer";
 import { resetCartState } from "store/cart";
 import { FetchStatus } from "types/asyncState";
+import { useIonRouter } from "@ionic/react";
 
 export const UserPage = () => {
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
+    const router = useIonRouter();
     const { user, editStatus } = useAppSelector((store) => store.auth);
 
     const handleLogoutClick = useCallback(() => {
@@ -25,9 +25,9 @@ export const UserPage = () => {
 
     useEffect(() => {
         if (editStatus === FetchStatus.FULFILLED) {
-            navigate("/");
+            router.push("/");
         }
-    }, [navigate, editStatus]);
+    }, [editStatus, router]);
 
     useEffect(
         () => () => {

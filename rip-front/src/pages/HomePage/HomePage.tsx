@@ -11,24 +11,24 @@ import {
     RightContainerStyled,
 } from "pages/HomePage/HomePage.style";
 import React, { useCallback, useEffect } from "react";
-import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "store";
 import { getProductListAction } from "store/products/products.actions";
 import { FetchStatus } from "types/asyncState";
 import { ProductCreateForm } from "components/ProductCreateForm";
+import { useIonRouter } from "@ionic/react";
 
 export const HomePage = () => {
     const dispatch = useAppDispatch();
     const { coffees: coffeesSearch, status } = useAppSelector((store) => store.coffee);
     const canCreate = useAppSelector((store) => store.auth.isAdmin || store.auth.isStaff);
 
-    const navigate = useNavigate();
+    const router = useIonRouter();
 
     const handleCardClick = useCallback(
         (id: number) => {
-            navigate(`/coffees/${id}`);
+            router.push(`/coffees/${id}`);
         },
-        [navigate]
+        [router]
     );
 
     useEffect(() => {

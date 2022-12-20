@@ -1,8 +1,8 @@
+import { useIonRouter } from "@ionic/react";
 import { ProductCard } from "components/ProductCard";
 import { MainLayout } from "layouts/MainLayout";
 import { ButtonStyled, CartPageStyled, HrStyled, NothingStyled, ResultStyled } from "pages/CartPage/CartPage.style";
 import React, { useCallback, useMemo } from "react";
-import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "store";
 import { createOrderAction } from "store/cart/cart.actions";
 
@@ -10,13 +10,13 @@ export const CartPage = () => {
     const dispatch = useAppDispatch();
     const cart = useAppSelector((store) => store.cart.cart?.products);
 
-    const navigate = useNavigate();
+    const router = useIonRouter();
 
     const handleCardClick = useCallback(
         (id: number) => {
-            navigate(`/coffees/${id}`);
+            router.push(`/coffees/${id}`);
         },
-        [navigate]
+        [router]
     );
 
     const totalSum = useMemo(() => cart?.reduce((prev, current) => prev + Number(current?.price), 0), [cart]);

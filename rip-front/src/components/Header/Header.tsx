@@ -11,33 +11,34 @@ import React, { useCallback, useEffect } from "react";
 
 import { HeaderProps } from "./Header.types";
 import { COLORS } from "constants/colors";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getPageTitle } from "utils";
 import { Button } from "components/Button";
 import { useAppDispatch, useAppSelector } from "store";
 import { getUserAction } from "store/auth/auth.actions";
 import { getCartAction } from "store/cart/cart.actions";
 import { FetchStatus } from "types/asyncState";
+import { useIonRouter } from "@ionic/react";
 
 export const Header = (props: HeaderProps) => {
     const dispatch = useAppDispatch();
     const location = useLocation();
-    const navigate = useNavigate();
+    const router = useIonRouter();
     const isAuth = useAppSelector((store) => store.auth.isAuth);
     const cartLength = useAppSelector((store) => store.cart.cart?.products.length);
     const { status } = useAppSelector((store) => store.auth);
 
     const handleButtonClick = useCallback(() => {
-        navigate("/auth");
-    }, [navigate]);
+        router.push("/auth");
+    }, [router]);
 
     const handleUserClick = useCallback(() => {
-        navigate("/user");
-    }, [navigate]);
+        router.push("/user");
+    }, [router]);
 
     const handleCartClick = useCallback(() => {
-        navigate("/cart");
-    }, [navigate]);
+        router.push("/cart");
+    }, [router]);
 
     useEffect(() => {
         if (status === FetchStatus.IDLE) {

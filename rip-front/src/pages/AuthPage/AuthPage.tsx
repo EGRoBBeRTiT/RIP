@@ -3,18 +3,20 @@ import { MainLayout } from "layouts/MainLayout";
 import { ContainerStyled } from "./AuthPage.style";
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "store";
-import { useNavigate } from "react-router";
 import { RegistrationForm } from "components/RegistrationForm";
 import { FetchStatus } from "types/asyncState";
+import { useIonRouter } from "@ionic/react";
 
 export const AuthPage = () => {
-    const navigate = useNavigate();
+    const router = useIonRouter();
     const { loginStatus } = useAppSelector((store) => store.auth);
     const [isRegistration, setIsRegistration] = useState(false);
 
     useEffect(() => {
-        if (loginStatus === FetchStatus.FULFILLED) navigate("/");
-    }, [loginStatus, navigate]);
+        if (loginStatus === FetchStatus.FULFILLED) {
+            router.push("/");
+        }
+    }, [loginStatus, router]);
 
     return (
         <MainLayout>

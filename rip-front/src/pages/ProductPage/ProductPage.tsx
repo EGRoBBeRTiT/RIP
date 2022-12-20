@@ -1,9 +1,10 @@
+import { useIonRouter } from "@ionic/react";
 import { Button } from "components/Button";
 import { ProductCreateForm } from "components/ProductCreateForm";
 import { MainLayout } from "layouts/MainLayout";
 import { DescriptionStyled, ProductPageStyled, TextStyled } from "pages/ProductPage/ProductPage.style";
 import React, { useCallback, useEffect, useMemo } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "store";
 import { changeCartAction } from "store/cart/cart.actions";
 import { getProductByIdAction } from "store/products/products.actions";
@@ -13,7 +14,7 @@ import { FetchStatus } from "types/asyncState";
 export const ProductPage = () => {
     const params = useParams<{ id: string }>();
     const products = useAppSelector((store) => store.cart.cart?.products);
-    const navigate = useNavigate();
+    const router = useIonRouter();
 
     const dispatch = useAppDispatch();
     const { coffee, editStatus } = useAppSelector((store) => store.coffee);
@@ -34,9 +35,9 @@ export const ProductPage = () => {
 
     useEffect(() => {
         if (editStatus === FetchStatus.FULFILLED) {
-            navigate("/");
+            router.push("/");
         }
-    }, [navigate, editStatus]);
+    }, [editStatus, router]);
 
     const isInCart = useMemo(
         () => !!coffee?.id && products?.map((product) => product.id).includes(coffee?.id),

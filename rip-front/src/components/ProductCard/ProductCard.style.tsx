@@ -15,6 +15,10 @@ export const ProductCardStyled = styled.div`
     padding: 16px;
     transition: all 0.2s;
 
+    @media (max-width: 768px) {
+        height: fit-content;
+    }
+
     h2 {
         padding: 0;
         font-size: 30px !important;
@@ -33,6 +37,14 @@ export const ProductCardStyled = styled.div`
             0px 25.0593px 14.6346px rgba(74, 102, 201, 0.015), 0px 15.7746px 9.21234px rgba(74, 102, 201, 0.0128732),
             0px 9.06347px 5.29306px rgba(74, 102, 201, 0.0104523),
             0px 3.98907px 2.32961px rgba(74, 102, 201, 0.00719002);
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+
+    @media (max-width: 1250px) {
+        height: fit-content;
     }
 `;
 

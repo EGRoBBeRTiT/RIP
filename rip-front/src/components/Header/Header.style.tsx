@@ -65,6 +65,12 @@ export const ContainerStyled = styled.div`
         align-items: center;
         gap: 32px;
     }
+
+    @media (max-width: 1250px) {
+        h3 {
+            display: none;
+        }
+    }
 `;
 
 export const SiCoffeescriptStyled = styled(SiCoffeescript)`

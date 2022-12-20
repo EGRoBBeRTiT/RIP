@@ -24,6 +24,10 @@ export const FormContainerStyled = styled.div`
     button {
         margin-top: 20px;
     }
+
+    @media (max-width: 1250px) {
+        padding: 40px 0;
+    }
 `;
 
 export const TitleStyled = styled.div`

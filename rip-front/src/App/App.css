@@ -1,0 +1,11 @@
+.tab-bar {
+    display: none;
+
+    --border: 1px solid #d0bcff;
+}
+
+@media screen and (max-width: 768px) {
+    .tab-bar {
+        display: flex;
+    }
+}

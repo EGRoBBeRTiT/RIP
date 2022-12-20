@@ -34,6 +34,10 @@ export const ProductsStyled = styled.div`
     flex-direction: column;
     width: calc(100% - 420px);
     gap: 16px;
+
+    @media (max-width: 1250px) {
+        width: 100%;
+    }
 `;
 
 export const TableStyled = styled.div`
@@ -42,6 +46,10 @@ export const TableStyled = styled.div`
     width: 100%;
     margin-top: 60px;
     overflow: visible;
+
+    @media (max-width: 1250px) {
+        flex-direction: column;
+    }
 `;
 
 export const BannerStyled = styled.div`
@@ -70,4 +78,8 @@ export const NothingStyled = styled.div`
 export const RightContainerStyled = styled.div`
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 1250px) {
+        align-self: center;
+    }
 `;

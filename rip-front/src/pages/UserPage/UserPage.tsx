@@ -8,22 +8,33 @@ import { useNavigate } from "react-router";
 import { RegistrationForm } from "components/RegistrationForm";
 import { User } from "generated/types";
 import { RegistrationFormValues } from "components/RegistrationForm/RegistrationForm.types";
+import { resetProductState } from "store/products/products.reducer";
+import { resetCartState } from "store/cart";
+import { FetchStatus } from "types/asyncState";
 
 export const UserPage = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const isAuth = useAppSelector((store) => store.auth.isAuth);
-    const user = useAppSelector((store) => store.auth.user);
+    const { user, editStatus } = useAppSelector((store) => store.auth);
 
     const handleLogoutClick = useCallback(() => {
         dispatch(clearAuthState());
+        dispatch(resetProductState());
+        dispatch(resetCartState());
     }, [dispatch]);
 
     useEffect(() => {
-        if (!isAuth) {
+        if (editStatus === FetchStatus.FULFILLED) {
             navigate("/");
         }
-    }, [isAuth, navigate]);
+    }, [navigate, editStatus]);
+
+    useEffect(
+        () => () => {
+            dispatch(clearAuthState());
+        },
+        [dispatch]
+    );
 
     return (
         <MainLayout>

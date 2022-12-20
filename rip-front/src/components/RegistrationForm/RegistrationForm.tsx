@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { CheckboxesContainerStyled, RegistrationContainerStyled } from "./RegistrationForm.style";
 
 import { RegistrationFormProps, RegistrationFormValues } from "./RegistrationForm.types";
@@ -10,12 +10,11 @@ import { InputField } from "components/Fields/InputField";
 import { AiOutlineUser } from "@react-icons/all-files/ai/AiOutlineUser";
 import { Button } from "components/Button";
 import { CheckboxField } from "components/Fields/CheckboxField";
-import { useAppDispatch, useAppSelector } from "store";
+import { useAppDispatch } from "store";
 import { editUserAction, registrationAction } from "store/auth/auth.actions";
 
 export const RegistrationForm = ({ onLoginClick, initialValues, isForEdit }: RegistrationFormProps) => {
     const dispatch = useAppDispatch();
-    const { error } = useAppSelector((store) => store.auth);
 
     const handleFormSubmit = useCallback(
         (values: RegistrationFormValues) => {
@@ -27,12 +26,6 @@ export const RegistrationForm = ({ onLoginClick, initialValues, isForEdit }: Reg
         },
         [dispatch, isForEdit]
     );
-
-    useEffect(() => {
-        if (error) {
-            alert(JSON.stringify(error, null, 2));
-        }
-    }, [error]);
 
     return (
         <RegistrationContainerStyled>

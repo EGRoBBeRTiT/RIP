@@ -3,18 +3,20 @@ import { ProductCreateForm } from "components/ProductCreateForm";
 import { MainLayout } from "layouts/MainLayout";
 import { DescriptionStyled, ProductPageStyled, TextStyled } from "pages/ProductPage/ProductPage.style";
 import React, { useCallback, useEffect, useMemo } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "store";
 import { changeCartAction } from "store/cart/cart.actions";
 import { getProductByIdAction } from "store/products/products.actions";
 import { resetProductState } from "store/products/products.reducer";
+import { FetchStatus } from "types/asyncState";
 
 export const ProductPage = () => {
     const params = useParams<{ id: string }>();
     const products = useAppSelector((store) => store.cart.cart?.products);
+    const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
-    const { coffee } = useAppSelector((store) => store.coffee);
+    const { coffee, editStatus } = useAppSelector((store) => store.coffee);
     const canEdit = useAppSelector((store) => store.auth.isAdmin || store.auth.isStaff);
 
     useEffect(() => {
@@ -29,6 +31,12 @@ export const ProductPage = () => {
         },
         [dispatch]
     );
+
+    useEffect(() => {
+        if (editStatus === FetchStatus.FULFILLED) {
+            navigate("/");
+        }
+    }, [navigate, editStatus]);
 
     const isInCart = useMemo(
         () => !!coffee?.id && products?.map((product) => product.id).includes(coffee?.id),

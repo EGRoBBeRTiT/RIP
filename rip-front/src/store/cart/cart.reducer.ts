@@ -56,5 +56,5 @@ export const cartSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 
-export const resetProductState = cartSlice.actions.reset as ActionCreatorWithoutPayload<string>;
+export const resetCartState = cartSlice.actions.reset as ActionCreatorWithoutPayload<string>;
 export const cartReducer = cartSlice.reducer;

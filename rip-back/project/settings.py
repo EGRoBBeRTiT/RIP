@@ -83,10 +83,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'coffee',
-        'USER': 'egor',
-        'PASSWORD': '1234',
+        'USER': 'postgres',
+        'PASSWORD': 'postgrespw',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '55000',
     }
 }
 
@@ -151,7 +151,7 @@ REST_FRAMEWORK = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
+        "LOCATION": "redis://localhost:6379",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -176,15 +176,15 @@ CORS_ORIGIN_ALLOW_ALL = True
 # # ]
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
     "localhost"
 ]
 CORS_ALLOW_CREDENTIALS = True
 # CORS_REPLACE_HTTPS_REFERER = True
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000/",
-    "http://127.0.0.1:3000/",
+    "http://localhost:3001/",
+    "http://127.0.0.1:3001/",
     "http://localhost"
 ]
 CORS_ALLOW_METHODS = [

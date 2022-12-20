@@ -5,17 +5,16 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector } from "store";
 import { useNavigate } from "react-router";
 import { RegistrationForm } from "components/RegistrationForm";
+import { FetchStatus } from "types/asyncState";
 
 export const AuthPage = () => {
     const navigate = useNavigate();
-    const isAuth = useAppSelector((store) => store.auth.isAuth);
+    const { loginStatus } = useAppSelector((store) => store.auth);
     const [isRegistration, setIsRegistration] = useState(false);
 
     useEffect(() => {
-        if (isAuth) {
-            navigate("/");
-        }
-    }, [isAuth, navigate]);
+        if (loginStatus === FetchStatus.FULFILLED) navigate("/");
+    }, [loginStatus, navigate]);
 
     return (
         <MainLayout>

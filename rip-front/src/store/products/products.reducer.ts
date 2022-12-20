@@ -1,7 +1,8 @@
-import { ActionCreatorWithoutPayload, createSlice, PayloadAction, SliceCaseReducers } from "@reduxjs/toolkit";
+import { ActionCreatorWithoutPayload, createSlice, SliceCaseReducers } from "@reduxjs/toolkit";
 import { Product } from "generated/types";
 import { AsyncState, FetchStatus } from "types/asyncState";
 import {
+    changeProductAction,
     createProductAction,
     deleteProductAction,
     getProductByIdAction,
@@ -14,6 +15,7 @@ export interface ProductState extends AsyncState {
     coffees?: Product[];
     availableBrands?: (string | undefined)[];
     error: unknown;
+    editStatus: FetchStatus;
 }
 
 const initialState: ProductState = {
@@ -22,6 +24,7 @@ const initialState: ProductState = {
     status: FetchStatus.IDLE,
     availableBrands: [],
     error: undefined,
+    editStatus: FetchStatus.IDLE,
 };
 
 const coffeeSlice = createSlice<ProductState, SliceCaseReducers<ProductState>>({
@@ -100,6 +103,17 @@ const coffeeSlice = createSlice<ProductState, SliceCaseReducers<ProductState>>({
 
             state.error = error;
         });
+
+        builder
+            .addCase(changeProductAction.pending, (state) => {
+                state.editStatus = FetchStatus.PENDING;
+            })
+            .addCase(changeProductAction.fulfilled, (state) => {
+                state.editStatus = FetchStatus.FULFILLED;
+            })
+            .addCase(changeProductAction.rejected, (state, { error }) => {
+                state.error = error;
+            });
     },
 });
 

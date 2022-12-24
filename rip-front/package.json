@@ -88,6 +88,7 @@
     },
     "devDependencies": {
         "@capacitor/cli": "^4.6.1",
+        "@ionic/cli": "6.20.6",
         "@types/styled-components": "^5.1.26"
     }
 }

@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
-from .permissions import IsStaff,IsSuperUser
+from .permissions import IsStaff, IsSuperUser
 from app.serializers import *
 
 
@@ -25,7 +25,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
             permission_classes = [IsAuthenticatedOrReadOnly]
-        elif self.action in ['retrieve', 'update', 'partial_update']:
+        elif self.action in ['retrieve', 'update', 'partial_update', 'create']:
             permission_classes = [IsStaff]
         else:
             permission_classes = [IsSuperUser]
@@ -74,6 +74,8 @@ class OrderViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action == 'get_orders' or self.action == 'create_new_order':
             permission_classes = [IsAuthenticated]
+        elif self.action == 'change_status':
+            permission_classes = [IsStaff]
         else:
             permission_classes = [IsSuperUser]
         return [permission() for permission in permission_classes]
@@ -94,6 +96,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         except:
             return Response([], status=status.HTTP_404_NOT_FOUND)
 
+    @extend_schema(request=None)
     @action(detail=False, methods=['post'])
     def create_new_order(self, request):
         request_user = request.user
@@ -109,6 +112,32 @@ class OrderViewSet(viewsets.ModelViewSet):
         cart.products.clear()
         cart.save()
         return Response(order_serialized.data, status=status.HTTP_200_OK)
+
+    @extend_schema(examples=[
+        OpenApiExample(
+            'Valid example 1',
+            summary='application.json',
+            description='status',
+            value={
+                'status': "string",
+            },
+            request_only=True,  # signal that example only applies to requests
+            response_only=False,
+        )
+    ])
+    @action(detail=True, methods=['post'])
+    def change_status(self, request, pk=None):
+
+        try:
+            order = Order.objects.get(pk=pk)
+        except Order.DoesNotExist:
+            return Response({'message': 'The order does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        data = request.data
+
+        serializer = self.serializer_class(order)
+        serializer.update(order, data)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def list(self, request, **kwargs):
         queryset = Order.objects.all()

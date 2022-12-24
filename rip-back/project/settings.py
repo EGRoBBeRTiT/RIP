@@ -151,7 +151,7 @@ REST_FRAMEWORK = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://localhost:6379",
+        "LOCATION": "redis://127.0.0.1:6379",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -162,7 +162,7 @@ SESSION_CACHE_ALIAS = "default"
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Coffee API',
-    'DESCRIPTION': "Titov`s",
+    'DESCRIPTION': "Titov`s coffee",
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }
@@ -176,15 +176,15 @@ CORS_ORIGIN_ALLOW_ALL = True
 # # ]
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "http://localhost:3001",
-    "http://127.0.0.1:3001",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
     "localhost"
 ]
 CORS_ALLOW_CREDENTIALS = True
 # CORS_REPLACE_HTTPS_REFERER = True
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3001/",
-    "http://127.0.0.1:3001/",
+    "http://localhost:3000/",
+    "http://127.0.0.1:3000/",
     "http://localhost"
 ]
 CORS_ALLOW_METHODS = [

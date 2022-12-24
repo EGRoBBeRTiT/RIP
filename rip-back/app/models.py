@@ -29,6 +29,7 @@ class Order(models.Model):
     date = models.DateTimeField(default=date_now, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders', related_query_name='orders_query')
     products = models.ManyToManyField(Product, verbose_name="products")
+    status = models.CharField(default="Принят", max_length=20, blank=True)
 
     def __str__(self) -> str:
         return self.user.get_short_name() + 'order'

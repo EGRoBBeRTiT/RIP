@@ -25,11 +25,18 @@ class Cart(models.Model):
 
 
 class Order(models.Model):
-    # date = models.DateField(default=date_now, blank=True)
-    date = models.DateTimeField(default=date_now, blank=True)
+    class Status(models.TextChoices):
+        ordered = "ordered"
+        approved = 'approved'
+        picked_up = 'picked_up'
+        rejected = 'rejected'
+
+    order_date = models.DateTimeField(default=date_now, blank=True)
+    approval_date = models.DateTimeField(blank=True, null=True)
+    pickup_date = models.DateTimeField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders', related_query_name='orders_query')
     products = models.ManyToManyField(Product, verbose_name="products")
-    status = models.CharField(default="Принят", max_length=20, blank=True)
+    status = models.CharField(default=Status.ordered, max_length=20, blank=True, choices=Status.choices)
 
     def __str__(self) -> str:
         return self.user.get_short_name() + 'order'

@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from authentication.serializers import UserSerializer
 from .models import *
-
+from django.core.exceptions import ValidationError
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -53,4 +53,14 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
 
-        fields = ['id', "user", "products", 'date', 'status']
+        fields = ['id', "user", "products", 'order_date', 'approval_date', 'pickup_date', 'status']
+
+    def update(self, instance, validated_data):
+        try:
+            instance.status = validated_data.get("status", instance.status)
+            instance.full_clean()
+            instance.save()
+            return instance
+        except ValidationError as e:
+            raise ValidationError(e.messages)
+

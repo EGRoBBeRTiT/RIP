@@ -169,17 +169,12 @@ class OrderViewSet(viewsets.ModelViewSet):
         if ord_status == Order.Status.approved:
             order.approval_date = date_now()
             order.save()
-
-            print('approval_date',order.approval_date)
         elif ord_status == Order.Status.picked_up:
             order.pickup_date = date_now()
             order.save()
-            print('pickup_date',order.pickup_date)
         elif ord_status == Order.Status.ordered:
             order.order_date = date_now()
             order.save()
-            print('order_date',order.order_date)
-            
         elif ord_status in [Order.Status.rejected]:
             user = request.user
             cart = user.get_cart()
